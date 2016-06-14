@@ -74,6 +74,9 @@
         });
         return utfgrid;
       };
+      if (typeof $delegate.layerTypes === 'undefined') {
+        $delegate.layerTypes = [];
+      }
       angular.extend($delegate.layerTypes, {
         google: {
           mustHaveUrl: false,
