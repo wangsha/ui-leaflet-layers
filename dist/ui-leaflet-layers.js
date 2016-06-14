@@ -44,7 +44,9 @@
 
 (function() {
   angular.module('ui-leaflet').config(['$provide', function($provide) {
-    return $provide.decorator('leafletLayerHelpers', function($delegate, $rootScope, leafletHelpers, leafletLayersLogger) {
+    return $provide.decorator('leafletLayerHelpers', [
+      '$delegate', '$rootScope', 'leafletHelpers', 'leafletLayersLogger',
+      function($delegate, $rootScope, leafletHelpers, leafletLayersLogger) {
       var $log, errorHeader, isArray, isDefined, isObject, utfGridCreateLayer;
       $log = leafletLayersLogger;
       isArray = leafletHelpers.isArray;
@@ -185,7 +187,7 @@
         }
       });
       return $delegate;
-    });
+    }]);
   }]);
 
 }).call(this);
