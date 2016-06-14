@@ -8,8 +8,8 @@
  */
 (function (window, angular){
   (function() {
-  angular.module('ui-leaflet').config(function($provide) {
-    return $provide.decorator('leafletHelpers', function($delegate, leafletLayersLogger) {
+  angular.module('ui-leaflet').config(['$provide', function($provide) {
+    return $provide.decorator('leafletHelpers', ['$delegate', 'leafletLayersLogger', function($delegate, leafletLayersLogger) {
       var $log, basicFunction;
       $log = leafletLayersLogger;
       basicFunction = function(layerType) {
@@ -37,13 +37,13 @@
         UTFGridPlugin: basicFunction(L.UtfGrid)
       });
       return $delegate;
-    });
-  });
+    }]);
+  }]);
 
 }).call(this);
 
 (function() {
-  angular.module('ui-leaflet').config(function($provide) {
+  angular.module('ui-leaflet').config(['$provide', function($provide) {
     return $provide.decorator('leafletLayerHelpers', function($delegate, $rootScope, leafletHelpers, leafletLayersLogger) {
       var $log, errorHeader, isArray, isDefined, isObject, utfGridCreateLayer;
       $log = leafletLayersLogger;
@@ -186,14 +186,14 @@
       });
       return $delegate;
     });
-  });
+  }]);
 
 }).call(this);
 
 (function() {
-  angular.module('ui-leaflet').service('leafletLayersLogger', function(nemSimpleLogger) {
+  angular.module('ui-leaflet').service('leafletLayersLogger', ['nemSimpleLogger', function(nemSimpleLogger) {
     return nemSimpleLogger.spawn();
-  });
+  }]);
 
 }).call(this);
 
